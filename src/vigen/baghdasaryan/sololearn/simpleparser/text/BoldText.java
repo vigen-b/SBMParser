@@ -4,6 +4,9 @@ import android.graphics.Typeface;
 import android.widget.TextView;
 
 public class BoldText extends PlainText {
+	
+	public static final String BOLD_START_TAG = "<b>";
+	public static final String BOLD_END_TAG = "</b>";
 
 	public BoldText(String text) {
 		super(text);
@@ -11,7 +14,7 @@ public class BoldText extends PlainText {
 	
 	@Override
 	public String getHtmlText() {
-		return "<b>" + getPlainText() + "</b>";
+		return BOLD_START_TAG + getPlainText() + BOLD_END_TAG;
 	}
 
 	@Override

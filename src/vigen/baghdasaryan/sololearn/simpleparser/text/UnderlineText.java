@@ -5,6 +5,9 @@ import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
 public class UnderlineText extends PlainText {
+	
+	public static final String UNDERLINE_START_TAG = "<u>";
+	public static final String UNDRLINE_END_TAG = "</u>";
 
 	public UnderlineText(String text) {
 		super(text);
@@ -12,7 +15,7 @@ public class UnderlineText extends PlainText {
 	
 	@Override
 	public String getHtmlText() {
-		return "<u>" + getPlainText() + "</u>";
+		return UNDERLINE_START_TAG + getPlainText() + UNDRLINE_END_TAG;
 	}
 	
 	@Override
