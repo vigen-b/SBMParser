@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Simple Parser</string>
+    <string name="error_message">Sorry an error occurred while processing data. Please try again.</string>
+
+</resources>
