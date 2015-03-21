@@ -37,6 +37,6 @@ public class SBMViewCreator {
 	
 	private boolean isSimpleMarkup(int i) {
 		int size = markupElements.size();
-		return i >= size && markupElements.get(i).isSimpleMarkup();
+		return i < size && markupElements.get(i).isSimpleMarkup();
 	}
 }
