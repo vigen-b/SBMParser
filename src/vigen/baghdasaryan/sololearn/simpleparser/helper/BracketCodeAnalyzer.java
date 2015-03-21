@@ -2,14 +2,11 @@ package vigen.baghdasaryan.sololearn.simpleparser.helper;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import static vigen.baghdasaryan.sololearn.simpleparser.helper.SquareBracketMarkup.*;
 
 public class BracketCodeAnalyzer {
 
-	public static final String LEFT_BRACKET_OF_OPEN_TAG = "[";
-	public static final String LEFT_BRACKET_OF_CLOSE_TAG = "[/";
-	public static final String RIGHT_BRACKET_OF_TAG = "]";
-
-	private ArrayList<SquareBracketML> tagos = null;
+	private ArrayList<SquareBracketMarkup> tagos = null;
 
 	public BracketCodeAnalyzer() {
 		tagos = new ArrayList<>();
@@ -21,19 +18,19 @@ public class BracketCodeAnalyzer {
 					.indexOf(LEFT_BRACKET_OF_OPEN_TAG);
 			if (startIndexOfOpenTag != 0) {
 				String text = sourceText.substring(0, startIndexOfOpenTag);
-				tagos.add(new SquareBracketML("", text)); // put("default",
-															// text);
+				tagos.add(new SquareBracketMarkup("[]", text));
 				sourceText.delete(0, startIndexOfOpenTag);
 			}
 
-			String tag = sourceText.substring(1,
-					Math.min(sourceText.indexOf(" "), sourceText.indexOf("]")));
 			int endIndexOfOpenTag = sourceText.indexOf(RIGHT_BRACKET_OF_TAG);
+			String markup = sourceText.substring(0, endIndexOfOpenTag + 1);
+			SquareBracketMarkup squareMarkup = new SquareBracketMarkup(markup);
 			sourceText.delete(0, endIndexOfOpenTag + 1);
 			int startIndexOfCloseTag = sourceText
-					.indexOf(LEFT_BRACKET_OF_CLOSE_TAG + tag);
+					.indexOf(LEFT_BRACKET_OF_CLOSE_TAG + squareMarkup.getTag());
 			String text = sourceText.substring(0, startIndexOfCloseTag);
-			tagos.add(new SquareBracketML(tag, text));
+			squareMarkup.setContent(text);
+			tagos.add(squareMarkup);
 			sourceText.delete(0, startIndexOfCloseTag);
 			int endIndexOfCloseTag = sourceText.indexOf(RIGHT_BRACKET_OF_TAG);
 			sourceText.delete(0, endIndexOfCloseTag + 1);
@@ -45,7 +42,7 @@ public class BracketCodeAnalyzer {
 		}
 	}
 
-	public ArrayList<SquareBracketML> getTegos() {
+	public ArrayList<SquareBracketMarkup> getTegos() {
 		return tagos;
 	}
 

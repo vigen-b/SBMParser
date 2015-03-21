@@ -40,27 +40,32 @@ public class JsonParser {
 	}
 
 	public int getId() throws ParseException {
-		try {
-			return contentJson.getInt(ID);
-		} catch (JSONException e) {
-			throw new ParseException("getID", -1);
-		}
+		return getInt(ID);
 	}
 
 	public String getText() throws ParseException {
-		try {
-			return contentJson.getString(TEXT);
-		} catch (JSONException e) {
-			throw new ParseException("getText", -1);
-		}
+		return get(TEXT);
 	}
 
 	public String getName() throws ParseException {
+		return get(NAME);
+	}
+	
+	public <K> K get(String key) throws ParseException {
 		try {
-			return contentJson.getString(NAME);
+			return (K) contentJson.get(key);
 		} catch (JSONException e) {
-			throw new ParseException("getName", -1);
+			throw new ParseException("get", -1);
+		} catch (ClassCastException e) {
+			throw new ParseException("get", -1);
 		}
 	}
-
+	
+	public int getInt(String key) throws ParseException {
+		try {
+			return contentJson.getInt(key);
+		} catch (JSONException e) {
+			throw new ParseException("getInt", -1);
+		} 
+	}
 }

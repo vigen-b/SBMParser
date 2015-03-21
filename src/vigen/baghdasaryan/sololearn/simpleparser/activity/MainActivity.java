@@ -7,7 +7,7 @@ import java.util.Locale;
 import vigen.baghdasaryan.sololearn.simpleparser.R;
 import vigen.baghdasaryan.sololearn.simpleparser.helper.BracketCodeAnalyzer;
 import vigen.baghdasaryan.sololearn.simpleparser.helper.JsonParser;
-import vigen.baghdasaryan.sololearn.simpleparser.helper.SquareBracketML;
+import vigen.baghdasaryan.sololearn.simpleparser.helper.SquareBracketMarkup;
 import vigen.baghdasaryan.sololearn.simpleparser.text.PlainText;
 import android.app.Activity;
 import android.os.Bundle;
@@ -37,29 +37,29 @@ public class MainActivity extends Activity {
 	private void showSourceContent() {
 		try {
 			parseSourceFile();
-			analyzeSource();
+			analyzeSourceText();
 			changeActionBar();
 		} catch (ParseException e) {
 			errorView.setVisibility(View.VISIBLE);
 		}
 	}
 	
-	private void analyzeSource() throws ParseException {
-		BracketCodeAnalyzer analyzer = new BracketCodeAnalyzer();
-		analyzer.analyze(new StringBuilder(text));
-		ArrayList<SquareBracketML> tagos = analyzer.getTegos();
-		for (SquareBracketML tag : tagos) {
-			PlainText text = new PlainText(tag.getContent());
-			TextView tv = (TextView) text.createView(getApplicationContext());
-			root.addView(tv);
-		}
-	}
-
 	private void parseSourceFile() throws ParseException {
 		JsonParser parser = new JsonParser(this, SOURCE_FILE_PATH);
 		id = parser.getId();
 		text = parser.getText();
 		name = parser.getName();
+	}
+
+	private void analyzeSourceText() throws ParseException {
+		BracketCodeAnalyzer analyzer = new BracketCodeAnalyzer();
+		analyzer.analyze(new StringBuilder(text));
+		ArrayList<SquareBracketMarkup> tagos = analyzer.getTegos();
+		for (SquareBracketMarkup tag : tagos) {
+			PlainText text = new PlainText(tag.getTag() + " - " + tag.getContent());
+			TextView tv = (TextView) text.createView(getApplicationContext());
+			root.addView(tv);
+		}
 	}
 
 	private void changeActionBar() {
