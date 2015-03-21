@@ -5,5 +5,4 @@ public class HtmlText extends CodeText {
 	public HtmlText(String text) {
 		super(text);
 	}
-
 }

@@ -24,5 +24,4 @@ public class UnderlineText extends PlainText {
 		content.setSpan(new UnderlineSpan(), 0, getPlainText().length(), 0);
 		tv.setText(content);
 	}
-
 }
