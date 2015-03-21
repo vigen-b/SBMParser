@@ -60,7 +60,7 @@ public class SBM {
 	}
 
 	private void determineTag() {
-		tagAsText = determineTagAsText(markup);
+		tagAsText = getTagAsText(markup);
 		switch (tagAsText) {
 		case TAG_HEADING1:
 			plainText = new Heading1Text(content);
@@ -92,7 +92,7 @@ public class SBM {
 		return new LinkedHashMap<>();
 	}
 
-	public static String determineTagAsText(String markup) {
+	public static String getTagAsText(String markup) {
 		int endOfTag = markup.indexOf(WHITE_SPACE);
 		if (endOfTag < 0) {
 			endOfTag = markup.indexOf(RIGHT_BRACKET_OF_TAG);

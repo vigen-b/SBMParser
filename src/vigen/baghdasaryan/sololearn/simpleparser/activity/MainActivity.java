@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.util.Locale;
 
 import vigen.baghdasaryan.sololearn.simpleparser.R;
-import vigen.baghdasaryan.sololearn.simpleparser.helper.SBCodeAnalyzer;
+import vigen.baghdasaryan.sololearn.simpleparser.helper.SBMAnalyzer;
 import vigen.baghdasaryan.sololearn.simpleparser.helper.JsonParser;
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 
 	public static final String SOURCE_FILE_PATH = "sample.json";
 
-	private SBCodeAnalyzer analyzer = null;
+	private SBMAnalyzer analyzer = null;
 	private TextView errorView = null;
 	private int id = 0;
 	private String name = null;
@@ -55,8 +55,8 @@ public class MainActivity extends Activity {
 	}
 
 	private void analyzeContent() throws ParseException {
-		analyzer = new SBCodeAnalyzer();
-		analyzer.analyze(new StringBuilder(text));
+		analyzer = new SBMAnalyzer(new StringBuilder(text));
+		analyzer.analyze();
 	}
 	
 	private void showContent() {
