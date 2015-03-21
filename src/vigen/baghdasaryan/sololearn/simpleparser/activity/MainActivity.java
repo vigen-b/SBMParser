@@ -16,43 +16,52 @@ public class MainActivity extends Activity {
 
 	public static final String SOURCE_FILE_PATH = "sample.json";
 
-	private LinearLayout root = null;
+	private SBCodeAnalyzer analyzer = null;
 	private TextView errorView = null;
-	private String name = "";
-	private String text = "";
 	private int id = 0;
-
+	private String name = null;
+	private LinearLayout rootView = null;
+	private String text = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		root = (LinearLayout) findViewById(R.id.main_root);
+		rootView = (LinearLayout) findViewById(R.id.main_root);
 		errorView = (TextView) findViewById(R.id.main_error);
-		showSourceContent();
+		executeParsing();
 	}
-
-	private void showSourceContent() {
+	
+	private void executeParsing() {
 		try {
-			parseSourceFile();
-			analyzeSourceText();
-			changeActionBar();
+			analyzeAndShowContent();
 		} catch (ParseException e) {
 			errorView.setVisibility(View.VISIBLE);
 		}
 	}
+
+	private void analyzeAndShowContent() throws ParseException {
+			analyzeSourceFile();
+			analyzeContent();
+			showContent();
+			changeActionBar();
+	}
 	
-	private void parseSourceFile() throws ParseException {
+	private void analyzeSourceFile() throws ParseException {
 		JsonParser parser = new JsonParser(this, SOURCE_FILE_PATH);
 		id = parser.getId();
 		text = parser.getText();
 		name = parser.getName();
 	}
 
-	private void analyzeSourceText() throws ParseException {
-		SBCodeAnalyzer analyzer = new SBCodeAnalyzer();
+	private void analyzeContent() throws ParseException {
+		analyzer = new SBCodeAnalyzer();
 		analyzer.analyze(new StringBuilder(text));
+	}
+	
+	private void showContent() {
 		for (View v : analyzer.getViews(getApplicationContext())) {
-			root.addView(v);
+			rootView.addView(v);
 		}
 	}
 
