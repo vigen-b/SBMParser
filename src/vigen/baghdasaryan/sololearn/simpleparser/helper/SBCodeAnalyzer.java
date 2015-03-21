@@ -1,15 +1,27 @@
 package vigen.baghdasaryan.sololearn.simpleparser.helper;
 
+import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.LEFT_BRACKET_OF_CLOSE_TAG;
+import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.LEFT_BRACKET_OF_OPEN_TAG;
+import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.RIGHT_BRACKET_OF_TAG;
+import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.determineTagAsText;
+
 import java.text.ParseException;
 import java.util.ArrayList;
-import static vigen.baghdasaryan.sololearn.simpleparser.helper.SquareBracketMarkup.*;
 
-public class BracketCodeAnalyzer {
+import android.content.Context;
+import android.view.View;
 
-	private ArrayList<SquareBracketMarkup> tagos = null;
+/**
+ * @author vigen
+ *
+ * SB - Square Bracket ("[]").
+ */
+public class SBCodeAnalyzer {
 
-	public BracketCodeAnalyzer() {
-		tagos = new ArrayList<>();
+	private ArrayList<SBM> markupElements = null;
+
+	public SBCodeAnalyzer() {
+		markupElements = new ArrayList<>();
 	}
 
 	public void analyze(StringBuilder sourceText) throws ParseException {
@@ -18,19 +30,19 @@ public class BracketCodeAnalyzer {
 					.indexOf(LEFT_BRACKET_OF_OPEN_TAG);
 			if (startIndexOfOpenTag != 0) {
 				String text = sourceText.substring(0, startIndexOfOpenTag);
-				tagos.add(new SquareBracketMarkup("[]", text));
+				markupElements.add(new SBM("[]", text));
 				sourceText.delete(0, startIndexOfOpenTag);
 			}
 
 			int endIndexOfOpenTag = sourceText.indexOf(RIGHT_BRACKET_OF_TAG);
 			String markup = sourceText.substring(0, endIndexOfOpenTag + 1);
-			SquareBracketMarkup squareMarkup = new SquareBracketMarkup(markup);
 			sourceText.delete(0, endIndexOfOpenTag + 1);
 			int startIndexOfCloseTag = sourceText
-					.indexOf(LEFT_BRACKET_OF_CLOSE_TAG + squareMarkup.getTag());
+					.indexOf(LEFT_BRACKET_OF_CLOSE_TAG
+							+ determineTagAsText(markup));
 			String text = sourceText.substring(0, startIndexOfCloseTag);
-			squareMarkup.setContent(text);
-			tagos.add(squareMarkup);
+			SBM element = new SBM(markup, text);
+			markupElements.add(element);
 			sourceText.delete(0, startIndexOfCloseTag);
 			int endIndexOfCloseTag = sourceText.indexOf(RIGHT_BRACKET_OF_TAG);
 			sourceText.delete(0, endIndexOfCloseTag + 1);
@@ -42,8 +54,9 @@ public class BracketCodeAnalyzer {
 		}
 	}
 
-	public ArrayList<SquareBracketMarkup> getTegos() {
-		return tagos;
+	public ArrayList<View> getViews(Context context) {
+		SBMViewCreator viewCreator = new SBMViewCreator(markupElements);
+		return viewCreator.create(context);
 	}
 
 }

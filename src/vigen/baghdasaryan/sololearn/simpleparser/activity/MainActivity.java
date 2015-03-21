@@ -1,14 +1,11 @@
 package vigen.baghdasaryan.sololearn.simpleparser.activity;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Locale;
 
 import vigen.baghdasaryan.sololearn.simpleparser.R;
-import vigen.baghdasaryan.sololearn.simpleparser.helper.BracketCodeAnalyzer;
+import vigen.baghdasaryan.sololearn.simpleparser.helper.SBCodeAnalyzer;
 import vigen.baghdasaryan.sololearn.simpleparser.helper.JsonParser;
-import vigen.baghdasaryan.sololearn.simpleparser.helper.SquareBracketMarkup;
-import vigen.baghdasaryan.sololearn.simpleparser.text.PlainText;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,13 +49,10 @@ public class MainActivity extends Activity {
 	}
 
 	private void analyzeSourceText() throws ParseException {
-		BracketCodeAnalyzer analyzer = new BracketCodeAnalyzer();
+		SBCodeAnalyzer analyzer = new SBCodeAnalyzer();
 		analyzer.analyze(new StringBuilder(text));
-		ArrayList<SquareBracketMarkup> tagos = analyzer.getTegos();
-		for (SquareBracketMarkup tag : tagos) {
-			PlainText text = new PlainText(tag.getTag() + " - " + tag.getContent());
-			TextView tv = (TextView) text.createView(getApplicationContext());
-			root.addView(tv);
+		for (View v : analyzer.getViews(getApplicationContext())) {
+			root.addView(v);
 		}
 	}
 
