@@ -3,7 +3,7 @@ package vigen.baghdasaryan.sololearn.simpleparser.helper;
 import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.LEFT_BRACKET_OF_CLOSE_TAG;
 import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.LEFT_BRACKET_OF_OPEN_TAG;
 import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.RIGHT_BRACKET_OF_TAG;
-import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.getTagAsText;
+import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.*;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -33,11 +33,11 @@ public class SBMAnalyzer {
 			throws StringIndexOutOfBoundsException, ParseException {
 		int indexOfLeftBracket = sample.indexOf(LEFT_BRACKET_OF_OPEN_TAG);
 		if (indexOfLeftBracket != 0) {
-			addElementAndRemoveText(indexOfLeftBracket, "[]");
+			addElementAndRemoveText(indexOfLeftBracket, SBM_BRACKETS);
 		}
 		String markup = deleteNextMarkup();
 		indexOfLeftBracket = sample.indexOf(LEFT_BRACKET_OF_CLOSE_TAG
-				+ getTagAsText(markup));
+				+ getTag(markup));
 		addElementAndRemoveText(indexOfLeftBracket, markup);
 		deleteNextMarkup();
 		if (sample.length() != 0) {
