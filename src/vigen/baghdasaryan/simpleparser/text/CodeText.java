@@ -1,11 +1,19 @@
 package vigen.baghdasaryan.simpleparser.text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.htmlparser.jericho.Source;
 import net.htmlparser.jericho.SourceFormatter;
+import net.htmlparser.jericho.StartTag;
 import vigen.baghdasaryan.simpleparser.R;
 import vigen.baghdasaryan.simpleparser.sbm.Attribute.FormatValue;
 import vigen.baghdasaryan.simpleparser.sbm.Attributes;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
 public class CodeText extends PlainText {
@@ -39,6 +47,27 @@ public class CodeText extends PlainText {
 		SourceFormatter formatter = source.getSourceFormatter();
 		formatter.setIndentAllElements(true);
 		formatter.setIndentString(INDENT_SYMBOL);
-		return formatter.toString();
+		List<StartTag> startTagList = source.getAllStartTags();
+		ArrayList<String> startTags = new ArrayList<>();
+		for (StartTag tag : startTagList) {
+			startTags.add(tag.getName());
+		}
+
+		return colorizeTags(formatter.toString(), startTags);
+	}
+
+	private CharSequence colorizeTags(String html, ArrayList<String> tags) {
+		Spannable spanText = new SpannableString(html);
+		for (String tag : tags) {
+			int indexOfStartTag = html.indexOf("<" + tag) + 1;
+			spanText.setSpan(new ForegroundColorSpan(Color.GREEN),
+					indexOfStartTag, indexOfStartTag + tag.length(),
+					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			int indexOfEndTag = html.indexOf("</" + tag) + 2;
+			spanText.setSpan(new ForegroundColorSpan(Color.GREEN),
+					indexOfEndTag, indexOfEndTag + tag.length(),
+					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		}
+		return spanText;
 	}
 }
