@@ -1,4 +1,4 @@
-package vigen.baghdasaryan.sololearn.text;
+package vigen.baghdasaryan.simpleparser.text;
 
 import net.htmlparser.jericho.Source;
 import net.htmlparser.jericho.SourceFormatter;
