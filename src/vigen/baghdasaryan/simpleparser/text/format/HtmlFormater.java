@@ -2,6 +2,8 @@ package vigen.baghdasaryan.simpleparser.text.format;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import net.htmlparser.jericho.Source;
 import net.htmlparser.jericho.SourceFormatter;
@@ -49,15 +51,20 @@ public class HtmlFormater {
 	private void colorizeTags() {
 		formattedText = new SpannableString(htmlText);
 		for (String tag : tags) {
-			addSpan("<", tag);
-			addSpan("</", tag);
+			setSpan("<", tag);
+			setSpan("</", tag);
 		}
 	}
 	
-	private void addSpan(String chars, String tag) {
-		int indexOfStartTag = htmlText.indexOf(chars + tag) + chars.length();
-		formattedText.setSpan(new ForegroundColorSpan(Color.GREEN),
-				indexOfStartTag, indexOfStartTag + tag.length(),
-				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	private void setSpan(String chars, String tag) {
+		Pattern pattern = Pattern.compile(chars + tag);
+		Matcher matcher = pattern.matcher(htmlText);
+		while (matcher.find()) {
+			int indexOfStartTag = matcher.start() + chars.length();
+			formattedText.setSpan(new ForegroundColorSpan(Color.GREEN),
+					indexOfStartTag, indexOfStartTag + tag.length(),
+					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		}
+		
 	}
 }
