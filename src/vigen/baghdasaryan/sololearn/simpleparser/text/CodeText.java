@@ -2,9 +2,9 @@ package vigen.baghdasaryan.sololearn.simpleparser.text;
 
 import net.htmlparser.jericho.Source;
 import net.htmlparser.jericho.SourceFormatter;
-import vigen.baghdasaryan.sololearn.simpleparser.R;
-import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attribute.FormatValue;
-import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attributes;
+import vigen.baghdasaryan.simpleparser.R;
+import vigen.baghdasaryan.simpleparser.sbm.Attribute.FormatValue;
+import vigen.baghdasaryan.simpleparser.sbm.Attributes;
 import android.content.res.Resources;
 import android.widget.TextView;
 

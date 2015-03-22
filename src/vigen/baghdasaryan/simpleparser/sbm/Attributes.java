@@ -1,9 +1,9 @@
-package vigen.baghdasaryan.sololearn.simpleparser.sbm;
+package vigen.baghdasaryan.simpleparser.sbm;
 
 import java.util.ArrayList;
 
-import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attribute.FormatValue;
-import static vigen.baghdasaryan.sololearn.simpleparser.sbm.Attribute.Name;
+import vigen.baghdasaryan.simpleparser.sbm.Attribute.FormatValue;
+import static vigen.baghdasaryan.simpleparser.sbm.Attribute.Name;
 
 public class Attributes {
 

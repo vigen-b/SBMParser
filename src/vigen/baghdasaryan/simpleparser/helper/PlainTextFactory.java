@@ -1,6 +1,6 @@
-package vigen.baghdasaryan.sololearn.simpleparser.helper;
+package vigen.baghdasaryan.simpleparser.helper;
 
-import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attributes;
+import vigen.baghdasaryan.simpleparser.sbm.Attributes;
 import vigen.baghdasaryan.sololearn.simpleparser.text.BoldText;
 import vigen.baghdasaryan.sololearn.simpleparser.text.CodeText;
 import vigen.baghdasaryan.sololearn.simpleparser.text.HeadingText;

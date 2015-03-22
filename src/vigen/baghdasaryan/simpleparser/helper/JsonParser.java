@@ -1,4 +1,4 @@
-package vigen.baghdasaryan.sololearn.simpleparser.helper;
+package vigen.baghdasaryan.simpleparser.helper;
 
 import java.io.IOException;
 import java.io.InputStream;

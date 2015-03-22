@@ -1,11 +1,11 @@
-package vigen.baghdasaryan.sololearn.simpleparser.activity;
+package vigen.baghdasaryan.simpleparser.activity;
 
 import java.text.ParseException;
 import java.util.Locale;
 
-import vigen.baghdasaryan.sololearn.simpleparser.R;
-import vigen.baghdasaryan.sololearn.simpleparser.helper.JsonParser;
-import vigen.baghdasaryan.sololearn.simpleparser.sbm.SBMAnalyzer;
+import vigen.baghdasaryan.simpleparser.R;
+import vigen.baghdasaryan.simpleparser.helper.JsonParser;
+import vigen.baghdasaryan.simpleparser.sbm.SBMAnalyzer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;

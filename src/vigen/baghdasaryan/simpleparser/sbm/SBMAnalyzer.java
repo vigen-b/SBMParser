@@ -1,6 +1,6 @@
-package vigen.baghdasaryan.sololearn.simpleparser.sbm;
+package vigen.baghdasaryan.simpleparser.sbm;
 
-import static vigen.baghdasaryan.sololearn.simpleparser.sbm.SBM.*;
+import static vigen.baghdasaryan.simpleparser.sbm.SBM.*;
 
 import java.text.ParseException;
 import java.util.ArrayList;

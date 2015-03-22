@@ -1,7 +1,7 @@
 package vigen.baghdasaryan.sololearn.simpleparser.text;
 
-import vigen.baghdasaryan.sololearn.simpleparser.R;
-import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attributes;
+import vigen.baghdasaryan.simpleparser.R;
+import vigen.baghdasaryan.simpleparser.sbm.Attributes;
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;

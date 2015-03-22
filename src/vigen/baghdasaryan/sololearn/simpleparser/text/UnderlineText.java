@@ -1,6 +1,6 @@
 package vigen.baghdasaryan.sololearn.simpleparser.text;
 
-import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attributes;
+import vigen.baghdasaryan.simpleparser.sbm.Attributes;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;

@@ -1,4 +1,4 @@
-package vigen.baghdasaryan.sololearn.simpleparser.sbm;
+package vigen.baghdasaryan.simpleparser.sbm;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

@@ -1,6 +1,6 @@
 package vigen.baghdasaryan.sololearn.simpleparser.text;
 
-import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attributes;
+import vigen.baghdasaryan.simpleparser.sbm.Attributes;
 import android.graphics.Typeface;
 import android.widget.TextView;
 
