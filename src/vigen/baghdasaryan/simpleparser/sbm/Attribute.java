@@ -10,16 +10,16 @@ public class Attribute {
 	private Name name = null;
 	private FormatValue value = null;
 
-	public Attribute(String key, String value) {
-		resolveKey(key.toLowerCase(Locale.getDefault()));
+	public Attribute(String name, String value) {
+		resolveName(name.toLowerCase(Locale.getDefault()));
 		resolveValue(value.toLowerCase(Locale.getDefault()));
 	}
 	
-	private void resolveKey(String key) {
-		if(key.equals(FORMAT)) {
-			name = Name.FORMAT;
+	private void resolveName(String name) {
+		if(name.equals(FORMAT)) {
+			this.name = Name.FORMAT;
 		} else {
-			name = Name.DEFAULT;
+			this.name = Name.DEFAULT;
 		}
 	}
 	

@@ -17,9 +17,9 @@ public class Attributes {
 		return get(Name.FORMAT);
 	}
 	
-	public FormatValue get(Name key) {
+	public FormatValue get(Name name) {
 		for (Attribute attr : attributes) {
-			if(attr.getName() == key) {
+			if(attr.getName() == name) {
 				return attr.getValue();
 			}
 		}

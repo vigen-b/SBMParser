@@ -3,7 +3,7 @@ package vigen.baghdasaryan.simpleparser.sbm;
 import java.text.ParseException;
 
 import vigen.baghdasaryan.simpleparser.helper.PlainTextFactory;
-import vigen.baghdasaryan.sololearn.simpleparser.text.PlainText;
+import vigen.baghdasaryan.sololearn.text.PlainText;
 import android.content.Context;
 import android.view.View;
 

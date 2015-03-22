@@ -1,4 +1,4 @@
-package vigen.baghdasaryan.sololearn.simpleparser.text;
+package vigen.baghdasaryan.sololearn.text;
 
 import vigen.baghdasaryan.simpleparser.R;
 import vigen.baghdasaryan.simpleparser.sbm.Attributes;

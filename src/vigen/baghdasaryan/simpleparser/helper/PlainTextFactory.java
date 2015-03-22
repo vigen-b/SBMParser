@@ -1,12 +1,12 @@
 package vigen.baghdasaryan.simpleparser.helper;
 
 import vigen.baghdasaryan.simpleparser.sbm.Attributes;
-import vigen.baghdasaryan.sololearn.simpleparser.text.BoldText;
-import vigen.baghdasaryan.sololearn.simpleparser.text.CodeText;
-import vigen.baghdasaryan.sololearn.simpleparser.text.HeadingText;
-import vigen.baghdasaryan.sololearn.simpleparser.text.NoteText;
-import vigen.baghdasaryan.sololearn.simpleparser.text.PlainText;
-import vigen.baghdasaryan.sololearn.simpleparser.text.UnderlineText;
+import vigen.baghdasaryan.sololearn.text.BoldText;
+import vigen.baghdasaryan.sololearn.text.CodeText;
+import vigen.baghdasaryan.sololearn.text.HeadingText;
+import vigen.baghdasaryan.sololearn.text.NoteText;
+import vigen.baghdasaryan.sololearn.text.PlainText;
+import vigen.baghdasaryan.sololearn.text.UnderlineText;
 
 public class PlainTextFactory {
 
