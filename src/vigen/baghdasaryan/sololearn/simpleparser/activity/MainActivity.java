@@ -4,11 +4,12 @@ import java.text.ParseException;
 import java.util.Locale;
 
 import vigen.baghdasaryan.sololearn.simpleparser.R;
-import vigen.baghdasaryan.sololearn.simpleparser.helper.SBMAnalyzer;
 import vigen.baghdasaryan.sololearn.simpleparser.helper.JsonParser;
+import vigen.baghdasaryan.sololearn.simpleparser.sbm.SBMAnalyzer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ public class MainActivity extends Activity {
 	private String name = null;
 	private LinearLayout rootView = null;
 	private String text = null;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,7 +32,7 @@ public class MainActivity extends Activity {
 		errorView = (TextView) findViewById(R.id.main_error);
 		executeParsing();
 	}
-	
+
 	private void executeParsing() {
 		try {
 			analyzeAndShowContent();
@@ -41,12 +42,12 @@ public class MainActivity extends Activity {
 	}
 
 	private void analyzeAndShowContent() throws ParseException {
-			analyzeSourceFile();
-			analyzeContent();
-			showContent();
-			changeActionBar();
+		analyzeSourceFile();
+		analyzeContent();
+		showContent();
+		changeActionBar();
 	}
-	
+
 	private void analyzeSourceFile() throws ParseException {
 		JsonParser parser = new JsonParser(this, SOURCE_FILE_PATH);
 		id = parser.getId();
@@ -58,10 +59,13 @@ public class MainActivity extends Activity {
 		analyzer = new SBMAnalyzer(new StringBuilder(text));
 		analyzer.analyze();
 	}
-	
+
 	private void showContent() {
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		params.setMargins(0, 10, 0, 0);
 		for (View v : analyzer.getViews(getApplicationContext())) {
-			rootView.addView(v);
+			rootView.addView(v, params);
 		}
 	}
 

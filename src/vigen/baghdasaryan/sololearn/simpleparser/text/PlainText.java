@@ -1,6 +1,7 @@
 package vigen.baghdasaryan.sololearn.simpleparser.text;
 
 import vigen.baghdasaryan.sololearn.simpleparser.R;
+import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attributes;
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -10,10 +11,12 @@ import android.widget.TextView;
 
 public class PlainText {
 
-	private String text = null;
+	private Attributes attributes = null;
 	private boolean isSimpleText = true;
+	private String text = null;
 
-	public PlainText(String text) {
+	public PlainText(String text, Attributes attrs) {
+		attributes = attrs;
 		this.text = text;
 	}
 
@@ -30,11 +33,15 @@ public class PlainText {
 		tv.setText(Html.fromHtml(text));
 	}
 
-	public String getHtmlText() {
+	public Attributes getAttributes() {
+		return attributes;
+	}
+	
+	public String getHtml() {
 		return text;
 	}
 
-	final public String getPlainText() {
+	final public String getText() {
 		return text;
 	}
 

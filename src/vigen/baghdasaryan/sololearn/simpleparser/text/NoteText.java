@@ -1,6 +1,7 @@
 package vigen.baghdasaryan.sololearn.simpleparser.text;
 
 import vigen.baghdasaryan.sololearn.simpleparser.R;
+import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attributes;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,8 @@ import android.widget.TextView;
 
 public class NoteText extends PlainText {
 
-	public NoteText(String text) {
-		super(text);
+	public NoteText(String text, Attributes attrs) {
+		super(text, attrs);
 		setAsSimpleText(false);
 	}
 	

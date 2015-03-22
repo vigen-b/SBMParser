@@ -1,12 +1,10 @@
-package vigen.baghdasaryan.sololearn.simpleparser.helper;
+package vigen.baghdasaryan.sololearn.simpleparser.sbm;
 
-import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.LEFT_BRACKET_OF_CLOSE_TAG;
-import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.LEFT_BRACKET_OF_OPEN_TAG;
-import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.RIGHT_BRACKET_OF_TAG;
-import static vigen.baghdasaryan.sololearn.simpleparser.helper.SBM.*;
+import static vigen.baghdasaryan.sololearn.simpleparser.sbm.SBM.*;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+
 
 import android.content.Context;
 import android.view.View;

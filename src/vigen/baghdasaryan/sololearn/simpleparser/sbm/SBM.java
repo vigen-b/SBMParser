@@ -1,20 +1,16 @@
-package vigen.baghdasaryan.sololearn.simpleparser.helper;
+package vigen.baghdasaryan.sololearn.simpleparser.sbm;
 
 import java.text.ParseException;
 
-import vigen.baghdasaryan.sololearn.simpleparser.text.BoldText;
-import vigen.baghdasaryan.sololearn.simpleparser.text.CodeText;
-import vigen.baghdasaryan.sololearn.simpleparser.text.Heading1Text;
-import vigen.baghdasaryan.sololearn.simpleparser.text.NoteText;
+import vigen.baghdasaryan.sololearn.simpleparser.helper.PlainTextFactory;
 import vigen.baghdasaryan.sololearn.simpleparser.text.PlainText;
-import vigen.baghdasaryan.sololearn.simpleparser.text.UnderlineText;
 import android.content.Context;
 import android.view.View;
 
 /**
- * @author vigen
+ * SBM - Square Bracket Markup.
  * 
- *         SBM - Square Bracket Markup.
+ * @author vigen
  */
 public class SBM {
 
@@ -24,17 +20,9 @@ public class SBM {
 	public static final String RIGHT_BRACKET_OF_TAG = "]";
 	public static final String WHITE_SPACE = " ";
 
-	public static final String TAG_HEADING1 = "h1";
-	public static final String TAG_BOLD = "b";
-	public static final String TAG_UNDERLINE = "u";
-	public static final String TAG_CODE = "code";
-	public static final String TAG_NOTE = "note";
-
-	private String content = null;
-	private String markup = null;
 	private PlainText plainText = null;
 	private String tag = null;
-	
+
 	public SBM(String markup, String content) throws ParseException {
 		if (isMarkupValid(markup)) {
 			initSquareBracketMarkup(markup, content);
@@ -50,38 +38,11 @@ public class SBM {
 	}
 
 	private void initSquareBracketMarkup(String markup, String content) {
-		this.content = content;
-		this.markup = markup;
-		determineTag();
-	}
-
-	private void determineTag() {
 		tag = getTag(markup);
-		switch (tag) {
-		case TAG_HEADING1:
-			plainText = new Heading1Text(content);
-			break;
-
-		case TAG_UNDERLINE:
-			plainText = new UnderlineText(content);
-			break;
-
-		case TAG_BOLD:
-			plainText = new BoldText(content);
-			break;
-
-		case TAG_CODE:
-			plainText = new CodeText(content);
-			break;
-
-		case TAG_NOTE:
-			plainText = new NoteText(content);
-			break;
-
-		default:
-			plainText = new PlainText(content);
-			break;
-		}
+		Attributes attributes = getAttributes(markup);
+		PlainTextFactory factory = new PlainTextFactory(content, tag,
+				attributes);
+		plainText = factory.getPlainText();
 	}
 
 	public static String getTag(String markup) {
@@ -92,16 +53,24 @@ public class SBM {
 		return markup.substring(1, endOfTag);
 	}
 
+	private Attributes getAttributes(String markup) {
+		AttributeAnalyzer analyzer = new AttributeAnalyzer();
+		String markupWithoutParenthesis = markup.substring(1,
+				markup.length() - 1);
+		String attributes = markupWithoutParenthesis.substring(tag.length());
+		return analyzer.analyze(attributes);
+	}
+
 	public View createView(Context context) {
 		return plainText.createView(context);
 	}
 
 	public String getHtml() {
-		return plainText.getHtmlText();
+		return plainText.getHtml();
 	}
 
 	public String getPlainText() {
-		return plainText.getPlainText();
+		return plainText.getText();
 	}
 
 	public boolean isSimpleMarkup() {

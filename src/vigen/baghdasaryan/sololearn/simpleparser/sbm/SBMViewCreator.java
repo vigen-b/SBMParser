@@ -1,4 +1,4 @@
-package vigen.baghdasaryan.sololearn.simpleparser.helper;
+package vigen.baghdasaryan.sololearn.simpleparser.sbm;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class SBMViewCreator {
 				if(isSimpleMarkup(i + 1)) {
 					continue;
 				}
-				PlainText text = new PlainText(content);
+				PlainText text = new PlainText(content, null);
 				views.add(text.createView(context));
 			} else {
 				views.add(markupElements.get(i).createView(context));

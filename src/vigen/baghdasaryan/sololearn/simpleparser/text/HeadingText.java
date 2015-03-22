@@ -1,18 +1,19 @@
 package vigen.baghdasaryan.sololearn.simpleparser.text;
 
 import vigen.baghdasaryan.sololearn.simpleparser.R;
+import vigen.baghdasaryan.sololearn.simpleparser.sbm.Attributes;
 import android.widget.TextView;
 
-public class Heading1Text extends PlainText {
+public class HeadingText extends PlainText {
 
-	public Heading1Text(String text) {
-		super(text);
+	public HeadingText(String text, Attributes attrs) {
+		super(text, attrs);
 		setAsSimpleText(false);
 	}
 
 	@Override
-	public String getHtmlText() {
-		return "<h1>" + getPlainText() + "</h1>";
+	public String getHtml() {
+		return "<h1>" + getText() + "</h1>";
 	}
 
 	@Override
