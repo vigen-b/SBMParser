@@ -25,10 +25,10 @@ public class PlainTextFactory {
 		attributes = attrs;
 		this.content = content;
 		this.tag = tag;
-		determinePlainText();
+		createPlainText();
 	}
 
-	private void determinePlainText() {
+	private void createPlainText() {
 		switch (tag) {
 		case TAG_HEADING:
 			plainText = new HeadingText(content, attributes);
